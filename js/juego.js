@@ -43,17 +43,21 @@ function agregarMovimiento (direccion) {
 
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
+
 function chequearSiGano() {
-  for(var i=0; i<grilla.length; i++){
-      if(grilla[i] != grillaGanadora[i]){
-        return false;}
-      else{
-      mostrarCartelGanador();}   
-}
-}
+  for (var i = 0; i < grilla.length; i++) {
+    for (var j = 0; j < grilla[i].length; j++) {
+      if (grilla[i][j]!==grillaGanadora[i][j]) {
+        return false;
+      }
+    }
+  }
+  mostrarCartelGanador();
+  return true;
+  }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
-function mostrarCartelGanador() {
+function mostrarCartelGanador(){
   alert("Lo lograste, ordenaste el rompecabezas.")
 }
 
@@ -68,19 +72,25 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    //COMPLETAR
+  varTemp = grilla[filaPos1][columnaPos1];
+  grilla[filaPos1][columnaPos1]=grilla[filaPos2][columnaPos2];
+  grilla[filaPos2][columnaPos2]=varTemp;
+  
+  
 }
 
 // Actualiza la posición de la pieza vacía
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
-    //COMPLETAR
+
 }
-
-
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
-    //COMPLETAR
+  if((fila >= 0 && fila <= 2)&&(columna >= 0 && columna <=2)) {
+    return true;
+  }
+    return false;
 }
+
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
 Las direcciones están dadas por números que representa: arriba (38), abajo (40), izquierda (37), derecha (39) */
